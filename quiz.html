@@ -1,54 +1,226 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BTS - Quiz</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BTS - Quiz Interactif Complet</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="main.js" defer></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 min-h-screen">
+
+    <!-- Menu injecté par main.js -->
     <div id="nav-placeholder"></div>
+
     <main class="max-w-2xl mx-auto px-4 py-12">
-        <div class="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-xl">
-            <h1 class="text-3xl font-black text-center text-blue-600 mb-8">🎯 Quiz Interactif</h1>
-            <div id="quiz-box">
-                <p id="q-text" class="text-xl font-bold mb-6 min-h-[60px]"></p>
-                <div id="opts" class="space-y-3"></div>
-                <p id="fb" class="mt-6 text-center text-lg font-bold"></p>
-                <button id="next" class="hidden mt-8 w-full py-4 bg-blue-600 text-white font-bold rounded-xl shadow-lg">Question suivante ➜</button>
+        <div class="bg-white dark:bg-slate-900 p-6 md:p-10 rounded-3xl shadow-xl border border-slate-200 dark:border-slate-800">
+            
+            <div id="quiz-container">
+                <!-- En-tête du Quiz -->
+                <div class="flex justify-between items-center mb-8">
+                    <h1 class="text-2xl font-black text-blue-600">🎯 Quiz Révisions</h1>
+                    <span id="progress-text" class="text-sm font-bold bg-blue-100 dark:bg-blue-900/40 text-blue-600 px-3 py-1 rounded-full"></span>
+                </div>
+
+                <!-- Barre de progression -->
+                <div class="w-full bg-slate-100 dark:bg-slate-800 h-2 rounded-full mb-8">
+                    <div id="progress-bar" class="bg-blue-600 h-2 rounded-full transition-all duration-500" style="width: 0%"></div>
+                </div>
+
+                <!-- Zone Question -->
+                <div id="question-box">
+                    <p id="q-text" class="text-xl font-bold mb-8 leading-tight min-h-[70px]"></p>
+                    
+                    <div id="opts" class="grid gap-3">
+                        <!-- Les boutons d'options seront injectés ici -->
+                    </div>
+
+                    <!-- Zone Explication (cachée par défaut) -->
+                    <div id="explanation-box" class="hidden mt-8 p-6 rounded-2xl border-2 transition-all">
+                        <p id="fb-status" class="font-black text-lg mb-2"></p>
+                        <div id="fb-text" class="text-slate-600 dark:text-slate-300 italic"></div>
+                    </div>
+
+                    <button id="next-btn" class="hidden mt-8 w-full py-4 bg-blue-600 hover:bg-blue-700 text-white font-black rounded-xl shadow-lg transform active:scale-95 transition">
+                        Continuer ➜
+                    </button>
+                </div>
             </div>
+
+            <!-- Écran de fin (caché par défaut) -->
+            <div id="result-screen" class="hidden text-center py-10">
+                <div class="text-6xl mb-6">🏆</div>
+                <h2 class="text-3xl font-black mb-2">Quiz Terminé !</h2>
+                <p class="text-slate-500 dark:text-slate-400 text-lg mb-8">Votre score final est de <span id="final-score" class="text-blue-600 font-bold"></span></p>
+                <button onclick="location.reload()" class="px-10 py-4 bg-blue-600 text-white font-bold rounded-2xl hover:bg-blue-700 transition">
+                    Recommencer le test
+                </button>
+            </div>
+
         </div>
     </main>
+
     <script>
         const questions = [
-            { q: "Calculer \\( P_B(A) \\) si \\( P(B)=0,5 \\) et \\( P(A \\cap B)=0,1 \\) :", options: ["0,05", "0,2", "0,4"], correct: 1 },
-            { q: "Quelle est l'espérance de \\( \\mathcal{B}(100 ; 0,1) \\) ?", options: ["1", "10", "90"], correct: 1 },
-            { q: "L'écart-type d'une loi \\( \\mathcal{P}(9) \\) est :", options: ["3", "9", "81"], correct: 0 },
-            { q: "Si \\( P(A)=0,4 \\), que vaut \\( P(\\bar{A}) \\) ?", options: ["0,4", "0,6", "1,4"], correct: 1 }
+            // BASES
+            { 
+                q: "Si \\( P(A)=0,3 \\) et \\( P(B)=0,4 \\) et que \\( A \\) et \\( B \\) sont incompatibles, que vaut \\( P(A \\cup B) \\) ?", 
+                options: ["0,12", "0,7", "1"], 
+                correct: 1,
+                exp: "Puisque les événements sont incompatibles, \\( P(A \\cap B) = 0 \\). La formule est donc \\( P(A \\cup B) = P(A) + P(B) = 0,3 + 0,4 = 0,7 \\)."
+            },
+            { 
+                q: "On donne \\( P(A)=0,6 \\). Que vaut la probabilité de l'événement contraire \\( P(\\bar{A}) \\) ?", 
+                options: ["0,6", "-0,6", "0,4"], 
+                correct: 2,
+                exp: "La formule de l'événement contraire est \\( P(\\bar{A}) = 1 - P(A) \\). Soit \\( 1 - 0,6 = 0,4 \\)."
+            },
+            // CONDITIONNELLES
+            { 
+                q: "Calculer \\( P_B(A) \\) sachant que \\( P(B)=0,8 \\) et \\( P(A \\cap B)=0,2 \\) :", 
+                options: ["0,25", "0,16", "4"], 
+                correct: 0,
+                exp: "On utilise la définition : \\( P_B(A) = \\frac{P(A \\cap B)}{P(B)} = \\frac{0,2}{0,8} = 0,25 \\)."
+            },
+            { 
+                q: "Deux événements sont dits indépendants si :", 
+                options: ["\\( P(A \\cap B) = 0 \\)", "\\( P(A \\cap B) = P(A) \\times P(B) \\)", "\\( P(A) = P(B) \\)"], 
+                correct: 1,
+                exp: "L'indépendance signifie que la réalisation de l'un n'influence pas l'autre, ce qui se traduit par \\( P(A \\cap B) = P(A) \\times P(B) \\)."
+            },
+            // BINOMIALE
+            { 
+                q: "Dans une loi \\( \\mathcal{B}(50 ; 0,1) \\), quelle est l'espérance \\( E(X) \\) ?", 
+                options: ["5", "50", "0,1"], 
+                correct: 0,
+                exp: "Pour une loi binomiale, \\( E(X) = n \\times p \\). Ici \\( 50 \\times 0,1 = 5 \\)."
+            },
+            { 
+                q: "Quelle est la variance d'une loi binomiale \\( \\mathcal{B}(n, p) \\) ?", 
+                options: ["\\( n \\times p \\)", "\\( n \\times p \\times (1-p) \\)", "\\( \\sqrt{np(1-p)} \\)"], 
+                correct: 1,
+                exp: "La variance est donnée par \\( V(X) = n p q \\) où \\( q = 1-p \\)."
+            },
+            { 
+                q: "Sur calculatrice, pour calculer \\( P(X \\le 3) \\) d'une loi binomiale, on utilise :", 
+                options: ["binomFdp / BinomialPD", "binomFrép / BinomialCD", "normalFRép"], 
+                correct: 1,
+                exp: "Le 'P' dans PD signifie 'Ponctuel' (X=k), le 'C' dans CD signifie 'Cumulé' (X ≤ k)."
+            },
+            // POISSON
+            { 
+                q: "Dans une loi de Poisson \\( \\mathcal{P}(\\lambda) \\), que peut-on dire de l'espérance et de la variance ?", 
+                options: ["\\( E(X) = V(X) = \\lambda \\)", "\\( E(X) = \\lambda \\) et \\( V(X) = \\lambda^2 \\)", "Elles sont différentes"], 
+                correct: 0,
+                exp: "C'est une propriété unique de la loi de Poisson : la moyenne (espérance) est égale à la variance."
+            },
+            { 
+                q: "Si \\( X \\sim \\mathcal{P}(4) \\), que vaut l'écart-type \\( \\sigma(X) \\) ?", 
+                options: ["4", "16", "2"], 
+                correct: 2,
+                exp: "L'écart-type est la racine carrée de la variance. Comme \\( V(X) = \\lambda = 4 \\), alors \\( \\sigma(X) = \\sqrt{4} = 2 \\)."
+            },
+            { 
+                q: "On approche une loi \\( \\mathcal{B}(n, p) \\) par une loi de Poisson si :", 
+                options: ["\\( n \\) est petit", "\\( n \\ge 30 \\) et \\( p \\le 0,1 \\)", "\\( p \\) est proche de 0,5"], 
+                correct: 1,
+                exp: "On utilise cette approximation (loi des événements rares) quand l'échantillon est grand et la probabilité de succès très faible."
+            },
+            // GENERAL
+            { 
+                q: "La somme des probabilités de toutes les issues d'un univers est :", 
+                options: ["Inconnue", "Toujours égale à 1", "Comprise entre 0 et 100"], 
+                correct: 1,
+                exp: "Par définition, la probabilité de l'univers entier \\( P(\\Omega) \\) est égale à 1."
+            },
+            { 
+                q: "Que signifie le symbole \\( ! \\) dans \\( k! \\) (Loi de Poisson) ?", 
+                options: ["L'opposé de k", "La factorielle de k", "k au carré"], 
+                correct: 1,
+                exp: "Il s'agit de la factorielle : \\( k! = k \\times (k-1) \\times ... \\times 1 \\)."
+            }
         ];
+
         let cur = 0, score = 0;
+
         function load() {
             const q = questions[cur];
+            
+            // UI Update
+            document.getElementById('progress-text').innerText = `Question ${cur + 1} / ${questions.length}`;
+            document.getElementById('progress-bar').style.width = ((cur + 1) / questions.length * 100) + '%';
             document.getElementById('q-text').innerHTML = q.q;
-            const optDiv = document.getElementById('opts'); optDiv.innerHTML = '';
-            document.getElementById('fb').innerText = '';
-            document.getElementById('next').classList.add('hidden');
+            document.getElementById('explanation-box').classList.add('hidden');
+            document.getElementById('next-btn').classList.add('hidden');
+
+            const optDiv = document.getElementById('opts');
+            optDiv.innerHTML = '';
+
             q.options.forEach((o, i) => {
                 const b = document.createElement('button');
-                b.className = "w-full text-left p-4 rounded-xl border-2 border-slate-100 dark:border-slate-800 hover:border-blue-500 bg-slate-50 dark:bg-slate-800 transition font-bold";
+                b.className = "w-full text-left p-4 rounded-2xl border-2 border-slate-100 dark:border-slate-800 hover:border-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all font-bold text-slate-700 dark:text-slate-300";
                 b.innerHTML = o;
-                b.onclick = () => {
-                    if(i === q.correct) { score++; document.getElementById('fb').innerText = "✅ Bravo !"; document.getElementById('fb').className="mt-6 text-center text-green-500 font-bold"; }
-                    else { document.getElementById('fb').innerText = "❌ Faux."; document.getElementById('fb').className="mt-6 text-center text-red-500 font-bold"; }
-                    document.querySelectorAll('#opts button').forEach(btn => btn.disabled = true);
-                    document.getElementById('next').classList.remove('hidden');
-                };
+                b.onclick = () => check(i);
                 optDiv.appendChild(b);
             });
+
             if(window.MathJax) MathJax.typesetPromise();
         }
-        document.getElementById('next').onclick = () => { cur++; if(cur < questions.length) load(); else document.getElementById('quiz-box').innerHTML = `<div class="text-center"><h2 class="text-2xl font-bold">Terminé ! Score : ${score}/${questions.length}</h2><button onclick="location.reload()" class="mt-4 px-6 py-2 bg-blue-600 text-white rounded-lg">Recommencer</button></div>`; };
+
+        function check(idx) {
+            const q = questions[cur];
+            const isCorrect = (idx === q.correct);
+            const expBox = document.getElementById('explanation-box');
+            const status = document.getElementById('fb-status');
+            const text = document.getElementById('fb-text');
+            const btns = document.querySelectorAll('#opts button');
+
+            if(isCorrect) score++;
+
+            // Disable buttons and highlight correct/wrong
+            btns.forEach((btn, i) => {
+                btn.disabled = true;
+                if(i === q.correct) {
+                    btn.classList.replace('border-slate-100', 'border-green-500');
+                    btn.classList.add('bg-green-50', 'dark:bg-green-900/20', 'text-green-600');
+                } else if(i === idx && !isCorrect) {
+                    btn.classList.replace('border-slate-100', 'border-red-500');
+                    btn.classList.add('bg-red-50', 'dark:bg-red-900/20', 'text-red-600');
+                }
+            });
+
+            // Show explanation
+            expBox.classList.remove('hidden');
+            if(isCorrect) {
+                status.innerText = "✅ Excellent !";
+                status.className = "font-black text-lg mb-2 text-green-600";
+                expBox.classList.add('bg-green-50/50', 'dark:bg-green-900/10', 'border-green-200', 'dark:border-green-800');
+                expBox.classList.remove('bg-red-50/50', 'dark:bg-red-900/10', 'border-red-200', 'dark:border-red-800');
+            } else {
+                status.innerText = "❌ Ce n'est pas tout à fait ça...";
+                status.className = "font-black text-lg mb-2 text-red-600";
+                expBox.classList.add('bg-red-50/50', 'dark:bg-red-900/10', 'border-red-200', 'dark:border-red-800');
+                expBox.classList.remove('bg-green-50/50', 'dark:bg-green-900/10', 'border-green-200', 'dark:border-green-800');
+            }
+            text.innerHTML = q.exp;
+
+            document.getElementById('next-btn').classList.remove('hidden');
+            if(window.MathJax) MathJax.typesetPromise();
+        }
+
+        document.getElementById('next-btn').onclick = () => {
+            cur++;
+            if(cur < questions.length) {
+                load();
+            } else {
+                document.getElementById('question-box').classList.add('hidden');
+                document.getElementById('result-screen').classList.remove('hidden');
+                document.getElementById('final-score').innerText = `${score} / ${questions.length}`;
+            }
+        };
+
+        // Initial load
         load();
     </script>
 </body>

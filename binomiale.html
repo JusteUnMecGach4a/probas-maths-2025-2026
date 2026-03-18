@@ -5,30 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BTS - Loi Binomiale</title>
     <link rel="stylesheet" href="style.css">
+    <script src="theme.js" defer></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
     <nav>
         <a href="index.html">Accueil</a>
         <a href="conditionnelles.html">Conditionnelles</a>
-        <a href="binomiale.html" class="active">Loi Binomiale</a>
+        <a href="binomiale.html" class="active">Binomiale</a>
+        <a href="poisson.html">Poisson</a>
         <a href="quiz.html">Quiz</a>
+        <button class="theme-toggle" onclick="toggleTheme()">🌓 Thème</button>
     </nav>
     <div class="container">
-        <h1>2. Loi Binomiale \( \mathcal{B}(n, p) \)</h1>
-        <p>On l'utilise quand on répète \( n \) fois une expérience à deux issues de façon indépendante.</p>
+        <h1>2. La Loi Binomiale \( \mathcal{B}(n, p) \)</h1>
+        <p>Elle correspond à la répétition de \( n \) épreuves de Bernoulli indépendantes.</p>
         
         <div class="formula">
             \[ P(X = k) = \binom{n}{k} \times p^k \times (1-p)^{n-k} \]
         </div>
 
+        <h3>Indicateurs à retenir</h3>
+        <ul>
+            <li><strong>Espérance (Moyenne) :</strong> \( E(X) = n \times p \)</li>
+            <li><strong>Variance :</strong> \( V(X) = n \times p \times (1-p) \)</li>
+            <li><strong>Écart-type :</strong> \( \sigma(X) = \sqrt{V(X)} \)</li>
+        </ul>
         <div class="card">
-            <h3>Paramètres Clés</h3>
-            <ul>
-                <li><strong>\( n \)</strong> : Nombre de répétitions (essais).</li>
-                <li><strong>\( p \)</strong> : Probabilité de succès d'un essai.</li>
-                <li><strong>Espérance \( E(X) = n \times p \)</strong> : Moyenne théorique de succès.</li>
-            </ul>
+            <p>💡 <strong>Note :</strong> Sur votre calculatrice TI, utilisez <code>binomFdp</code> pour \( P(X=k) \) et <code>binomFrép</code> pour \( P(X \le k) \).</p>
         </div>
     </div>
 </body>

@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <title>Maths BTS - Accueil</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Librairie MathJax pour le LaTeX -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
     <header>
@@ -16,17 +19,17 @@
         <a href="quiz.html">Quiz interactif</a>
     </nav>
     <div class="container">
-        <h2>Bienvenue dans votre espace de révision</h2>
-        <p>Ce site regroupe l'essentiel du cours de première année de BTS sur les probabilités.</p>
+        <h2>Bienvenue</h2>
+        <p>Ce site utilise <strong>LaTeX</strong> pour un affichage mathématique de haute qualité.</p>
         <div class="card-grid">
             <div class="card">
                 <h3>Partie 1</h3>
-                <p>Maîtrisez les tableaux de contingence et les probabilités sachant qu'un événement est réalisé.</p>
+                <p>Maîtrisez les probabilités de type \( P_B(A) \).</p>
                 <a href="conditionnelles.html" class="btn">Voir le cours</a>
             </div>
             <div class="card">
                 <h3>Partie 2</h3>
-                <p>Apprenez à identifier un schéma de Bernoulli et à utiliser la loi Binomiale avec votre calculatrice.</p>
+                <p>Étudiez la loi \( \mathcal{B}(n, p) \).</p>
                 <a href="binomiale.html" class="btn">Voir le cours</a>
             </div>
         </div>

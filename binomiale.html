@@ -2,18 +2,25 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BTS - Loi Binomiale</title>
-    <link rel="stylesheet" href="style.css">
+    <title>BTS - Binomiale</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="main.js" defer></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
-<body>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100">
     <div id="nav-placeholder"></div>
-    <div class="container">
-        <h1>2. Loi Binomiale \( \mathcal{B}(n, p) \)</h1>
-        <p>Utilisée pour \( n \) répétitions indépendantes d'un succès \( p \).</p>
-        <div class="formula">\[ P(X = k) = \binom{n}{k} p^k (1-p)^{n-k} \]</div>
-        <ul><li>Espérance : \( E(X) = n \times p \)</li><li>Écart-type : \( \sigma(X) = \sqrt{n p (1-p)} \)</li></ul>
-    </div>
+    <main class="max-w-4xl mx-auto px-4 py-12">
+        <h1 class="text-4xl font-black mb-8 border-b-4 border-blue-600 inline-block">Loi Binomiale \( \mathcal{B}(n, p) \)</h1>
+        <div class="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm space-y-6">
+            <p>On l'utilise pour \( n \) répétitions indépendantes d'une épreuve à deux issues.</p>
+            <div class="bg-slate-100 dark:bg-slate-800 p-6 rounded-xl text-center text-xl">
+                \[ P(X = k) = \binom{n}{k} p^k (1-p)^{n-k} \]
+            </div>
+            <div class="grid md:grid-cols-2 gap-4 text-center">
+                <div class="p-4 bg-blue-50 dark:bg-slate-800 rounded-lg"><strong>Espérance :</strong> \( E(X) = n p \)</div>
+                <div class="p-4 bg-blue-50 dark:bg-slate-800 rounded-lg"><strong>Écart-type :</strong> \( \sigma(X) = \sqrt{n p (1-p)} \)</div>
+            </div>
+        </div>
+    </main>
 </body>
 </html>

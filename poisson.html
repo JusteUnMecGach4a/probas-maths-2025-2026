@@ -2,18 +2,25 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BTS - Loi de Poisson</title>
-    <link rel="stylesheet" href="style.css">
+    <title>BTS - Poisson</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="main.js" defer></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
-<body>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100">
     <div id="nav-placeholder"></div>
-    <div class="container">
-        <h1>3. Loi de Poisson \( \mathcal{P}(\lambda) \)</h1>
-        <p>Modélise le nombre d'événements rares dans un temps donné.</p>
-        <div class="formula">\[ P(X = k) = \frac{e^{-\lambda} \lambda^k}{k!} \]</div>
-        <p>Approximation de la Binomiale par Poisson si \( n \ge 30 \) et \( p \le 0,1 \).</p>
-    </div>
+    <main class="max-w-4xl mx-auto px-4 py-12">
+        <h1 class="text-4xl font-black mb-8 border-b-4 border-blue-600 inline-block">Loi de Poisson \( \mathcal{P}(\lambda) \)</h1>
+        <div class="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm space-y-6">
+            <p>C'est la loi des événements rares.</p>
+            <div class="bg-slate-100 dark:bg-slate-800 p-6 rounded-xl text-center text-xl">
+                \[ P(X = k) = \frac{e^{-\lambda} \lambda^k}{k!} \]
+            </div>
+            <p><strong>Paramètre :</strong> \( \lambda \) est la moyenne d'événements.</p>
+            <p class="p-4 border-l-4 border-orange-500 bg-orange-50 dark:bg-slate-800 italic">
+                On approche une Binomiale par une Poisson si \( n \ge 30 \) et \( p \le 0,1 \).
+            </p>
+        </div>
+    </main>
 </body>
 </html>

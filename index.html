@@ -1,22 +1,33 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maths BTS - Accueil</title>
-    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="main.js" defer></script>
 </head>
-<body>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100">
     <div id="nav-placeholder"></div>
-    <header><h1>Maths BTS SN 1</h1><p>Probabilités & Statistiques</p></header>
-    <div class="container">
-        <h2>Bienvenue</h2>
-        <p>Sélectionnez un module pour réviser les notions de vos documents PDF.</p>
-        <div class="card-grid">
-            <div class="card"><h3>🔍 Cours</h3><p>Accédez aux fiches sur les lois Binomiale et Poisson.</p></div>
-            <div class="card"><h3>🎯 Quiz</h3><p>Testez-vous avec 10 questions corrigées.</p></div>
+    <header class="bg-gradient-to-br from-blue-700 to-indigo-800 py-20 text-center text-white">
+        <h1 class="text-5xl font-black mb-4">Probabilités BTS SN</h1>
+        <p class="text-xl text-blue-100">Révisions interactives : Cours, Formules et Quiz</p>
+    </header>
+    <main class="max-w-6xl mx-auto px-4 py-12 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800">
+            <h3 class="text-xl font-bold mb-2">📚 Les Bases</h3>
+            <p class="text-slate-500 mb-4 text-sm">Intersection, réunion et événements contraires.</p>
+            <a href="bases.html" class="text-blue-600 font-bold hover:underline">Accéder →</a>
         </div>
-    </div>
+        <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800">
+            <h3 class="text-xl font-bold mb-2">📊 Loi Binomiale</h3>
+            <p class="text-slate-500 mb-4 text-sm">Le schéma de Bernoulli et les paramètres \(n\) et \(p\).</p>
+            <a href="binomiale.html" class="text-blue-600 font-bold hover:underline">Accéder →</a>
+        </div>
+        <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800">
+            <h3 class="text-xl font-bold mb-2">🎯 Quiz</h3>
+            <p class="text-slate-500 mb-4 text-sm">Testez-vous sur l'ensemble du programme.</p>
+            <a href="quiz.html" class="text-blue-600 font-bold hover:underline">Accéder →</a>
+        </div>
+    </main>
 </body>
 </html>

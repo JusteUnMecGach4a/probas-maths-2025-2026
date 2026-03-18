@@ -1,38 +1,19 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BTS - Loi de Poisson</title>
     <link rel="stylesheet" href="style.css">
-    <script src="theme.js" defer></script>
+    <script src="main.js" defer></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
-    <nav>
-        <a href="index.html">Accueil</a>
-        <a href="conditionnelles.html">Conditionnelles</a>
-        <a href="binomiale.html">Binomiale</a>
-        <a href="poisson.html" class="active">Poisson</a>
-        <a href="quiz.html">Quiz</a>
-        <button class="theme-toggle" onclick="toggleTheme()">🌓 Thème</button>
-    </nav>
+    <div id="nav-placeholder"></div>
     <div class="container">
-        <h1>3. La Loi de Poisson \( \mathcal{P}(\lambda) \)</h1>
-        <p>Utilisée pour modéliser le nombre d'événements "rares" sur un intervalle de temps ou d'espace.</p>
-        
-        <div class="formula">
-            \[ P(X = k) = \frac{e^{-\lambda} \lambda^k}{k!} \]
-        </div>
-
-        <h3>Paramètres</h3>
-        <ul>
-            <li><strong>Moyenne (\( \lambda \)) :</strong> \( E(X) = \lambda \)</li>
-            <li><strong>Variance :</strong> \( V(X) = \lambda \)</li>
-        </ul>
-        
-        <h3>Approximation</h3>
-        <p>On approche une loi \( \mathcal{B}(n, p) \) par une loi \( \mathcal{P}(np) \) si \( n \ge 30 \), \( p \le 0,1 \) et \( np \le 10 \).</p>
+        <h1>3. Loi de Poisson \( \mathcal{P}(\lambda) \)</h1>
+        <p>Modélise le nombre d'événements rares dans un temps donné.</p>
+        <div class="formula">\[ P(X = k) = \frac{e^{-\lambda} \lambda^k}{k!} \]</div>
+        <p>Approximation de la Binomiale par Poisson si \( n \ge 30 \) et \( p \le 0,1 \).</p>
     </div>
 </body>
 </html>

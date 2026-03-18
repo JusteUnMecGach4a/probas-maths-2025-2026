@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>BTS - Probabilités Conditionnelles</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html">Accueil</a>
+        <a href="conditionnelles.html" class="active">Probabilités Conditionnelles</a>
+        <a href="binomiale.html">Loi Binomiale</a>
+        <a href="quiz.html">Quiz</a>
+    </nav>
+    <div class="container">
+        <h1>1. Probabilités Conditionnelles</h1>
+        <p>La probabilité d'un événement A <strong>sachant</strong> que B est réalisé se note $P_B(A)$.</p>
+        
+        <div class="formula">
+            Formula : P<sub>B</sub>(A) = P(A ∩ B) / P(B)
+        </div>
+
+        <h3>Exemple concret (issu de vos exercices)</h3>
+        <table>
+            <tr><th>Effectifs</th><th>Fumeurs (F)</th><th>Non-fumeurs</th><th>Total</th></tr>
+            <tr><td>Garçons (G)</td><td>36</td><td>9</td><td>45</td></tr>
+            <tr><td>Filles</td><td>44</td><td>11</td><td>55</td></tr>
+            <tr><td>Total</td><td>80</td><td>20</td><td>100</td></tr>
+        </table>
+        <p>Calculons la probabilité que l'élève soit un fumeur sachant que c'est un garçon :<br>
+        $P_G(F) = \frac{\text{Effectif (F et G)}}{\text{Total Garçons}} = \frac{36}{45} = 0,8$ (soit 80%).</p>
+
+        <h3>Indépendance</h3>
+        <p>A et B sont indépendants si $P(A \cap B) = P(A) \times P(B)$.</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>BTS - Loi Binomiale</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html">Accueil</a>
+        <a href="conditionnelles.html">Probabilités Conditionnelles</a>
+        <a href="binomiale.html" class="active">Loi Binomiale</a>
+        <a href="quiz.html">Quiz</a>
+    </nav>
+    <div class="container">
+        <h1>2. La Loi Binomiale ℬ(n, p)</h1>
+        <p>Elle modélise le nombre de succès dans une répétition d'épreuves identiques et indépendantes.</p>
+        
+        <div class="card">
+            <h4>Conditions d'application :</h4>
+            <ul>
+                <li>Une épreuve à 2 issues (Succès / Échec).</li>
+                <li>Répétition <strong>n</strong> fois de façon indépendante.</li>
+                <li>Probabilité du succès <strong>p</strong> constante.</li>
+            </ul>
+        </div>
+
+        <h3>Formules à retenir</h3>
+        <ul>
+            <li><strong>Espérance :</strong> $E(X) = n \times p$ (Moyenne sur le long terme)</li>
+            <li><strong>Écart-type :</strong> $\sigma(X) = \sqrt{n \times p \times (1-p)}$</li>
+        </ul>
+
+        <div class="formula">
+            Sur calculatrice : <br>
+            TI : binomFdp(n, p, k) <br>
+            Casio : BinomialPD(k, n, p)
+        </div>
+    </div>
+</body>
+</html>

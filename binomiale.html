@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>BTS - Loi Binomiale</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
     <nav>
@@ -13,29 +15,19 @@
         <a href="quiz.html">Quiz</a>
     </nav>
     <div class="container">
-        <h1>2. La Loi Binomiale ℬ(n, p)</h1>
-        <p>Elle modélise le nombre de succès dans une répétition d'épreuves identiques et indépendantes.</p>
+        <h1>2. La Loi Binomiale \( \mathcal{B}(n, p) \)</h1>
         
-        <div class="card">
-            <h4>Conditions d'application :</h4>
-            <ul>
-                <li>Une épreuve à 2 issues (Succès / Échec).</li>
-                <li>Répétition <strong>n</strong> fois de façon indépendante.</li>
-                <li>Probabilité du succès <strong>p</strong> constante.</li>
-            </ul>
-        </div>
-
-        <h3>Formules à retenir</h3>
-        <ul>
-            <li><strong>Espérance :</strong> $E(X) = n \times p$ (Moyenne sur le long terme)</li>
-            <li><strong>Écart-type :</strong> $\sigma(X) = \sqrt{n \times p \times (1-p)}$</li>
-        </ul>
-
+        <p>La probabilité d'obtenir exactement \( k \) succès est donnée par :</p>
         <div class="formula">
-            Sur calculatrice : <br>
-            TI : binomFdp(n, p, k) <br>
-            Casio : BinomialPD(k, n, p)
+            \[ P(X = k) = \binom{n}{k} \times p^k \times (1-p)^{n-k} \]
         </div>
+
+        <h3>Indicateurs de la variable aléatoire</h3>
+        <ul>
+            <li><strong>Espérance :</strong> \[ E(X) = n \times p \]</li>
+            <li><strong>Variance :</strong> \[ V(X) = n \times p \times (1-p) \]</li>
+            <li><strong>Écart-type :</strong> \[ \sigma(X) = \sqrt{V(X)} \]</li>
+        </ul>
     </div>
 </body>
 </html>

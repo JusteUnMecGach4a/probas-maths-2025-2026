@@ -2,6 +2,7 @@ function loadNavbar() {
     const navHTML = `
         <nav>
             <a href="index.html" id="nav-index">Accueil</a>
+            <a href="bases.html" id="nav-bases">Bases</a>
             <a href="conditionnelles.html" id="nav-cond">Conditionnelles</a>
             <a href="binomiale.html" id="nav-bin">Binomiale</a>
             <a href="poisson.html" id="nav-poi">Poisson</a>
@@ -12,9 +13,16 @@ function loadNavbar() {
     const placeholder = document.getElementById('nav-placeholder');
     if (placeholder) placeholder.innerHTML = navHTML;
 
-    // Lien actif
+    // Gestion du lien actif
     const page = window.location.pathname.split("/").pop() || "index.html";
-    const mapping = {"index.html":"nav-index", "conditionnelles.html":"nav-cond", "binomiale.html":"nav-bin", "poisson.html":"nav-poi", "quiz.html":"nav-quiz"};
+    const mapping = {
+        "index.html": "nav-index",
+        "bases.html": "nav-bases",
+        "conditionnelles.html": "nav-cond",
+        "binomiale.html": "nav-bin",
+        "poisson.html": "nav-poi",
+        "quiz.html": "nav-quiz"
+    };
     if (mapping[page]) document.getElementById(mapping[page]).classList.add('active');
 }
 

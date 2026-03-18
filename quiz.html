@@ -1,56 +1,40 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BTS - Quiz</title>
     <link rel="stylesheet" href="style.css">
-    <script src="theme.js" defer></script>
+    <script src="main.js" defer></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
-    <nav>
-        <a href="index.html">Accueil</a>
-        <a href="conditionnelles.html">Conditionnelles</a>
-        <a href="binomiale.html">Binomiale</a>
-        <a href="poisson.html">Poisson</a>
-        <a href="quiz.html" class="active">Quiz</a>
-        <button class="theme-toggle" onclick="toggleTheme()">🌓 Thème</button>
-    </nav>
+    <div id="nav-placeholder"></div>
     <div class="container">
         <h1>🎯 Quiz de révision</h1>
         <div id="quiz-box">
-            <p id="question-text" style="font-weight: bold;"></p>
+            <p id="question-text" style="font-weight:bold"></p>
             <div id="options"></div>
-            <p id="feedback" style="margin-top:10px"></p>
+            <p id="feedback"></p>
             <button id="next-btn" class="btn" style="display:none; margin-top:15px">Suivant</button>
         </div>
     </div>
-
     <script>
         const questions = [
-            { q: "Quelle est l'espérance d'une loi de Poisson \\( \\mathcal{P}(4) \\) ?", options: ["2", "4", "16"], correct: 1 },
-            { q: "La condition pour approcher une Binomiale par une Poisson est notamment :", options: ["n < 10", "p > 0,5", "n \\ge 30 et p \\le 0,1"], correct: 2 },
-            { q: "Dans \\( \\mathcal{P}(\\lambda) \\), que vaut la variance \\( V(X) \\) ?", options: ["\\( \\lambda \\)", "\\( \\sqrt{\\lambda} \\)", "\\( \\lambda^2 \\)"], correct: 0 },
-            { q: "Si \\( P(B)=0,5 \\) et \\( P(A \\cap B)=0,1 \\), alors \\( P_B(A) = \\) ?", options: ["0,05", "0,2", "0,4"], correct: 1 },
-            { q: "Le nombre moyen d'appels est de 3 par heure. Quelle loi utilise-t-on ?", options: ["Binomiale", "Poisson", "Normale"], correct: 1 }
+            { q: "Si \\( P(B)=0,4 \\) et \\( P(A \\cap B)=0,1 \\), que vaut \\( P_B(A) \\) ?", options: ["0,25", "0,5", "0,1"], correct: 0 },
+            { q: "L'espérance d'une loi \\( \\mathcal{B}(100 ; 0,2) \\) est :", options: ["2", "20", "80"], correct: 1 },
+            { q: "Dans une loi de Poisson, on a toujours :", options: ["E(X) = V(X)", "E(X) = \\( \\sigma(X) \\)", "p > 0,5"], correct: 0 },
+            { q: "Approximation Binomiale -> Poisson possible si :", options: ["n < 10", "p > 0,5", "n \\ge 30 et p \\le 0,1"], correct: 2 }
         ];
-
         let cur = 0;
         function load() {
             const q = questions[cur];
             document.getElementById('question-text').innerHTML = q.q;
-            const optDiv = document.getElementById('options');
-            optDiv.innerHTML = '';
-            document.getElementById('feedback').innerText = '';
-            document.getElementById('next-btn').style.display = 'none';
-
+            const optDiv = document.getElementById('options'); optDiv.innerHTML = '';
+            document.getElementById('feedback').innerText = ''; document.getElementById('next-btn').style.display = 'none';
             q.options.forEach((o, i) => {
-                const b = document.createElement('button');
-                b.className = "btn-opt";
-                b.innerHTML = o;
+                const b = document.createElement('button'); b.className = "btn-opt"; b.innerHTML = o;
                 b.onclick = () => {
-                    document.getElementById('feedback').innerText = (i === q.correct) ? "✅ Bravo !" : "❌ Erreur.";
+                    document.getElementById('feedback').innerText = (i === q.correct) ? "✅ Correct" : "❌ Faux";
                     document.querySelectorAll('.btn-opt').forEach(btn => btn.disabled = true);
                     document.getElementById('next-btn').style.display = 'block';
                 };
@@ -58,12 +42,7 @@
             });
             if(window.MathJax) MathJax.typesetPromise();
         }
-
-        document.getElementById('next-btn').onclick = () => {
-            cur++;
-            if(cur < questions.length) load();
-            else document.getElementById('quiz-box').innerHTML = "<h3>Quiz terminé !</h3>";
-        };
+        document.getElementById('next-btn').onclick = () => { cur++; if(cur < questions.length) load(); else document.getElementById('quiz-box').innerHTML = "<h3>Terminé !</h3>"; };
         load();
     </script>
 </body>

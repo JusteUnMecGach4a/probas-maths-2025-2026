@@ -1,39 +1,19 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BTS - Loi Binomiale</title>
     <link rel="stylesheet" href="style.css">
-    <script src="theme.js" defer></script>
+    <script src="main.js" defer></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
-    <nav>
-        <a href="index.html">Accueil</a>
-        <a href="conditionnelles.html">Conditionnelles</a>
-        <a href="binomiale.html" class="active">Binomiale</a>
-        <a href="poisson.html">Poisson</a>
-        <a href="quiz.html">Quiz</a>
-        <button class="theme-toggle" onclick="toggleTheme()">🌓 Thème</button>
-    </nav>
+    <div id="nav-placeholder"></div>
     <div class="container">
-        <h1>2. La Loi Binomiale \( \mathcal{B}(n, p) \)</h1>
-        <p>Elle correspond à la répétition de \( n \) épreuves de Bernoulli indépendantes.</p>
-        
-        <div class="formula">
-            \[ P(X = k) = \binom{n}{k} \times p^k \times (1-p)^{n-k} \]
-        </div>
-
-        <h3>Indicateurs à retenir</h3>
-        <ul>
-            <li><strong>Espérance (Moyenne) :</strong> \( E(X) = n \times p \)</li>
-            <li><strong>Variance :</strong> \( V(X) = n \times p \times (1-p) \)</li>
-            <li><strong>Écart-type :</strong> \( \sigma(X) = \sqrt{V(X)} \)</li>
-        </ul>
-        <div class="card">
-            <p>💡 <strong>Note :</strong> Sur votre calculatrice TI, utilisez <code>binomFdp</code> pour \( P(X=k) \) et <code>binomFrép</code> pour \( P(X \le k) \).</p>
-        </div>
+        <h1>2. Loi Binomiale \( \mathcal{B}(n, p) \)</h1>
+        <p>Utilisée pour \( n \) répétitions indépendantes d'un succès \( p \).</p>
+        <div class="formula">\[ P(X = k) = \binom{n}{k} p^k (1-p)^{n-k} \]</div>
+        <ul><li>Espérance : \( E(X) = n \times p \)</li><li>Écart-type : \( \sigma(X) = \sqrt{n p (1-p)} \)</li></ul>
     </div>
 </body>
 </html>

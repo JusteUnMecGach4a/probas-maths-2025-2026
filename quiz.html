@@ -2,8 +2,9 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>BTS - Quiz Probabilités</title>
+    <title>BTS - Quiz Probabilités Complet</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Librairie MathJax pour le LaTeX -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
@@ -15,20 +16,68 @@
         <a href="quiz.html" class="active">Quiz</a>
     </nav>
     <div class="container">
-        <h1>🎯 Testez-vous</h1>
+        <h1>🎯 Testez vos connaissances (10 questions)</h1>
         <div id="quiz-box">
-            <p id="question-text" style="font-size: 1.2rem; min-height: 50px;"></p>
+            <div id="progress" style="margin-bottom: 10px; color: #666; font-size: 0.9rem;"></div>
+            <p id="question-text" style="font-size: 1.2rem; min-height: 60px; font-weight: bold;"></p>
             <div id="options-container" style="display: flex; flex-direction: column; gap: 10px; margin: 20px 0;"></div>
-            <p id="feedback"></p>
+            <p id="feedback" style="min-height: 30px; font-weight: bold;"></p>
             <button id="next-btn" class="btn" style="display:none;">Question suivante</button>
         </div>
     </div>
 
     <script>
         const questions = [
-            { q: "Calculer \\( P_B(A) \\) si \\( P(B)=0,5 \\) et \\( P(A \\cap B)=0,1 \\) :", options: ["0,05", "0,2", "0,6"], correct: 1 },
-            { q: "Quelle est l'espérance de la loi \\( \\mathcal{B}(20 ; 0,1) \\) ?", options: ["2", "18", "0,2"], correct: 0 },
-            { q: "La formule de l'écart-type est :", options: ["\\( n \\times p \\)", "\\( \\sqrt{n p (1-p)} \\)", "\\( p^k \\)"], correct: 1 }
+            { 
+                q: "Calculer \\( P_B(A) \\) si \\( P(B)=0,5 \\) et \\( P(A \\cap B)=0,15 \\) :", 
+                options: ["0,075", "0,3", "0,65"], 
+                correct: 1 
+            },
+            { 
+                q: "Si \\( P(A) = 0,4 \\), que vaut la probabilité de l'événement contraire \\( P(\\bar{A}) \\) ?", 
+                options: ["0,4", "0,6", "-0,4"], 
+                correct: 1 
+            },
+            { 
+                q: "Quelle est l'espérance \\( E(X) \\) d'une loi \\( \\mathcal{B}(50 ; 0,2) \\) ?", 
+                options: ["10", "40", "5"], 
+                correct: 0 
+            },
+            { 
+                q: "Deux événements \\( A \\) et \\( B \\) sont indépendants si \\( P(A)=0,3 \\) et \\( P(B)=0,2 \\). Que vaut \\( P(A \\cap B) \\) ?", 
+                options: ["0,5", "0,1", "0,06"], 
+                correct: 2 
+            },
+            { 
+                q: "Dans une loi binomiale, que représente le paramètre \\( n \\) ?", 
+                options: ["La probabilité de succès", "Le nombre de répétitions", "Le nombre de succès attendus"], 
+                correct: 1 
+            },
+            { 
+                q: "La formule de la variance pour une loi binomiale est :", 
+                options: ["\\( n \\times p \\)", "\\( n \\times p \\times (1-p) \\)", "\\( \\sqrt{n p} \\)"], 
+                correct: 1 
+            },
+            { 
+                q: "Si \\( P_A(B) = 0,7 \\) et \\( P(A) = 0,2 \\), alors \\( P(A \\cap B) \\) est égal à :", 
+                options: ["0,14", "0,9", "3,5"], 
+                correct: 0 
+            },
+            { 
+                q: "Une épreuve de Bernoulli est une expérience qui possède :", 
+                options: ["Une infinité d'issues", "Exactement 2 issues", "3 issues (Gagné, Perdu, Nul)"], 
+                correct: 1 
+            },
+            { 
+                q: "Sur une calculatrice TI, pour calculer \\( P(X \\le k) \\), on utilise :", 
+                options: ["binomFdp", "binomFrép", "normalFrép"], 
+                correct: 1 
+            },
+            { 
+                q: "Si \\( X \\sim \\mathcal{B}(10 ; 0,5) \\), quelle est la valeur de \\( P(X=0) \\) ?", 
+                options: ["\\( 0,5^{10} \\)", "\\( 0 \\)", "\\( 1 \\)"], 
+                correct: 0 
+            }
         ];
         
         let current = 0;
@@ -36,26 +85,44 @@
 
         function loadQ() {
             const q = questions[current];
+            
+            // Mise à jour de la progression
+            document.getElementById('progress').innerText = `Question ${current + 1} sur ${questions.length}`;
+            
+            // Texte de la question
             document.getElementById('question-text').innerHTML = q.q;
+            
             const container = document.getElementById('options-container');
             container.innerHTML = '';
             document.getElementById('feedback').innerText = '';
             document.getElementById('next-btn').style.display = 'none';
 
+            // Génération des boutons d'options
             q.options.forEach((opt, i) => {
                 const b = document.createElement('button');
-                b.innerHTML = opt; // Utilisation de innerHTML pour le LaTeX
+                b.innerHTML = opt;
                 b.className = "btn-opt";
                 b.onclick = () => {
-                    if(i === q.correct) { score++; document.getElementById('feedback').innerText = "Correct !"; }
-                    else { document.getElementById('feedback').innerText = "Faux."; }
-                    Array.from(container.children).forEach(btn => btn.disabled = true);
+                    const fb = document.getElementById('feedback');
+                    if(i === q.correct) { 
+                        score++; 
+                        fb.innerText = "✅ Correct !"; 
+                        fb.style.color = "green";
+                    } else { 
+                        fb.innerText = "❌ Faux."; 
+                        fb.style.color = "red";
+                    }
+                    // Désactiver les boutons après réponse
+                    Array.from(container.children).forEach(btn => {
+                        btn.disabled = true;
+                        btn.style.opacity = "0.7";
+                    });
                     document.getElementById('next-btn').style.display = 'block';
                 };
                 container.appendChild(b);
             });
 
-            // Commande cruciale : demande à MathJax de retraiter le nouveau texte injecté
+            // Demander à MathJax de traiter le nouveau contenu
             if (window.MathJax) {
                 MathJax.typesetPromise();
             }
@@ -63,9 +130,22 @@
 
         document.getElementById('next-btn').onclick = () => {
             current++;
-            if(current < questions.length) loadQ();
-            else document.getElementById('quiz-box').innerHTML = `<h3>Terminé ! Score : ${score}/${questions.length}</h3>`;
+            if(current < questions.length) {
+                loadQ();
+            } else {
+                let appreciation = score > 7 ? "Excellent !" : (score >= 5 ? "Pas mal !" : "Il faut réviser encore.");
+                document.getElementById('quiz-box').innerHTML = `
+                    <div style="text-align:center;">
+                        <h3>Quiz Terminé !</h3>
+                        <p style="font-size:2rem; margin:10px 0;">${score} / ${questions.length}</p>
+                        <p>${appreciation}</p>
+                        <button onclick="location.reload()" class="btn">Recommencer</button>
+                    </div>
+                `;
+            }
         };
+
+        // Chargement initial
         loadQ();
     </script>
 </body>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>BTS - Quiz Probabilités</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html">Accueil</a>
+        <a href="conditionnelles.html">Probabilités Conditionnelles</a>
+        <a href="binomiale.html">Loi Binomiale</a>
+        <a href="quiz.html" class="active">Quiz</a>
+    </nav>
+    <div class="container">
+        <h1>🎯 Testez vos connaissances</h1>
+        <div id="quiz-box">
+            <p id="question-text" style="font-weight: bold; font-size: 1.2rem;"></p>
+            <div id="options-container" style="display: flex; flex-direction: column; gap: 10px; margin: 20px 0;"></div>
+            <p id="feedback"></p>
+            <button id="next-btn" class="btn" style="display:none;">Question suivante</button>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            { q: "Si P(B)=0,4 et P(A∩B)=0,1 , que vaut P_B(A) ?", options: ["0,25", "0,5", "0,04"], correct: 0 },
+            { q: "On lance 10 fois un dé. On note X le nombre de '6'. n est égal à :", options: ["6", "10", "1/6"], correct: 1 },
+            { q: "Dans une loi ℬ(100 ; 0,2), l'espérance est :", options: ["2", "20", "80"], correct: 1 }
+        ];
+        let current = 0;
+        let score = 0;
+
+        function loadQ() {
+            const q = questions[current];
+            document.getElementById('question-text').innerText = q.q;
+            const container = document.getElementById('options-container');
+            container.innerHTML = '';
+            document.getElementById('feedback').innerText = '';
+            document.getElementById('next-btn').style.display = 'none';
+
+            q.options.forEach((opt, i) => {
+                const b = document.createElement('button');
+                b.innerText = opt;
+                b.className = "btn-opt";
+                b.onclick = () => {
+                    if(i === q.correct) { score++; document.getElementById('feedback').innerText = "Correct !"; }
+                    else { document.getElementById('feedback').innerText = "Faux."; }
+                    Array.from(container.children).forEach(btn => btn.disabled = true);
+                    document.getElementById('next-btn').style.display = 'block';
+                };
+                container.appendChild(b);
+            });
+        }
+
+        document.getElementById('next-btn').onclick = () => {
+            current++;
+            if(current < questions.length) loadQ();
+            else document.getElementById('quiz-box').innerHTML = `<h3>Terminé ! Score : ${score}/${questions.length}</h3>`;
+        };
+        loadQ();
+    </script>
+</body>
+</html>

@@ -5,32 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maths BTS - Accueil</title>
     <link rel="stylesheet" href="style.css">
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="theme.js" defer></script>
 </head>
 <body>
-    <header>
-        <h1>Maths BTS : Probabilités</h1>
-        <p style="color: var(--text-muted)">SN1 - Révisions Complètes</p>
-    </header>
     <nav>
         <a href="index.html" class="active">Accueil</a>
         <a href="conditionnelles.html">Conditionnelles</a>
-        <a href="binomiale.html">Loi Binomiale</a>
+        <a href="binomiale.html">Binomiale</a>
+        <a href="poisson.html">Poisson</a>
         <a href="quiz.html">Quiz</a>
+        <button class="theme-toggle" onclick="toggleTheme()">🌓 Thème</button>
     </nav>
+    <header>
+        <h1>Probabilités BTS SN</h1>
+        <p>Révisions interactives</p>
+    </header>
     <div class="container">
-        <h2>Bienvenue dans l'espace de révision</h2>
-        <p>Ce site regroupe les notions essentielles pour réussir vos examens de BTS sur les probabilités.</p>
+        <h2>Bienvenue</h2>
+        <p>Choisissez un module pour commencer vos révisions.</p>
         <div class="card-grid">
             <div class="card">
-                <h3>🔍 Conditionnelles</h3>
-                <p>Apprenez à calculer \( P_B(A) \) et à utiliser les arbres de probabilité.</p>
-                <a href="conditionnelles.html" class="btn">Étudier</a>
+                <h3>🔍 Loi de Poisson</h3>
+                <p>Nouveau module : Apprenez à modéliser les événements rares (pannes, appels, arrivées).</p>
+                <a href="poisson.html" class="btn">Voir le cours</a>
             </div>
             <div class="card">
-                <h3>📊 Loi Binomiale</h3>
-                <p>Maîtrisez les schémas de Bernoulli et les paramètres \( n \) et \( p \).</p>
-                <a href="binomiale.html" class="btn">Étudier</a>
+                <h3>🎯 Quiz</h3>
+                <p>Testez vos connaissances sur l'ensemble du programme.</p>
+                <a href="quiz.html" class="btn">Lancer le test</a>
             </div>
         </div>
     </div>

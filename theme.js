@@ -5,6 +5,5 @@ function toggleTheme() {
     localStorage.setItem('theme', targetTheme);
 }
 
-// Au chargement
 const savedTheme = localStorage.getItem('theme') || 'light';
 document.documentElement.setAttribute('data-theme', savedTheme);

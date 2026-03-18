@@ -18,8 +18,8 @@
         <button class="theme-toggle" onclick="toggleTheme()">🌓 Thème</button>
     </nav>
     <div class="container">
-        <h1>3. Loi de Poisson \( \mathcal{P}(\lambda) \)</h1>
-        <p>La loi de Poisson est souvent appelée "loi des événements rares". Elle modélise le nombre d'événements se produisant dans un intervalle de temps donné.</p>
+        <h1>3. La Loi de Poisson \( \mathcal{P}(\lambda) \)</h1>
+        <p>Utilisée pour modéliser le nombre d'événements "rares" sur un intervalle de temps ou d'espace.</p>
         
         <div class="formula">
             \[ P(X = k) = \frac{e^{-\lambda} \lambda^k}{k!} \]
@@ -27,18 +27,12 @@
 
         <h3>Paramètres</h3>
         <ul>
-            <li><strong>\( \lambda \) (Lambda)</strong> : représente le nombre moyen d'événements (l'intensité).</li>
-            <li><strong>Espérance</strong> : \( E(X) = \lambda \)</li>
-            <li><strong>Écart-type</strong> : \( \sigma(X) = \sqrt{\lambda} \)</li>
+            <li><strong>Moyenne (\( \lambda \)) :</strong> \( E(X) = \lambda \)</li>
+            <li><strong>Variance :</strong> \( V(X) = \lambda \)</li>
         </ul>
-
-        <h3>Approximation de la loi Binomiale</h3>
-        <p>On peut approcher une loi \( \mathcal{B}(n, p) \) par une loi \( \mathcal{P}(np) \) quand :</p>
-        <ul>
-            <li>\( n \ge 30 \)</li>
-            <li>\( p \le 0,1 \)</li>
-            <li>\( np \le 10 \)</li>
-        </ul>
+        
+        <h3>Approximation</h3>
+        <p>On approche une loi \( \mathcal{B}(n, p) \) par une loi \( \mathcal{P}(np) \) si \( n \ge 30 \), \( p \le 0,1 \) et \( np \le 10 \).</p>
     </div>
 </body>
 </html>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maths BTS - Probabilités & Loi Binomiale</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --success: #27ae60;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            background-color: #f4f7f6;
+        }
+
+        header {
+            background: var(--primary);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        nav {
+            background: #fff;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.05);
+        }
+
+        h2 { border-left: 5px solid var(--secondary); padding-left: 15px; color: var(--primary); margin-top: 40px; }
+        
+        .formula {
+            background: #e8f4fd;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+            font-style: italic;
+            font-size: 1.2rem;
+            margin: 15px 0;
+            border: 1px solid var(--secondary);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table, th, td { border: 1px solid #ddd; padding: 12px; text-align: center; }
+        th { background: var(--light); }
+
+        .quiz-container {
+            background: var(--light);
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 50px;
+        }
+
+        .question { margin-bottom: 20px; font-weight: bold; }
+        .options { display: grid; gap: 10px; }
+        button.option-btn {
+            padding: 10px;
+            border: 1px solid #ccc;
+            background: white;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+        button.option-btn:hover { background: var(--secondary); color: white; }
+        
+        #result { margin-top: 20px; font-weight: bold; padding: 10px; display: none; border-radius: 5px; }
+        .correct { background: #d4edda; color: #155724; }
+        .wrong { background: #f8d7da; color: #721c24; }
+
+        footer { text-align: center; padding: 20px; color: #777; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Mathématiques BTS : Probabilités</h1>
+    <p>Révisions : Probabilités Conditionnelles & Loi Binomiale</p>
+</header>
+
+<nav>
+    <a href="#conditionnelle">Probabilités Conditionnelles</a>
+    <a href="#binomiale">Loi Binomiale</a>
+    <a href="#quiz">Testez-vous !</a>
+</nav>
+
+<div class="container">
+    
+    <!-- Section 1: Probabilités Conditionnelles -->
+    <section id="conditionnelle">
+        <h2>1. Probabilités Conditionnelles</h2>
+        <p>On parle de probabilité conditionnelle quand on cherche la probabilité d'un événement sachant qu'un autre s'est déjà produit.</p>
+        
+        <div class="formula">
+            P<sub>B</sub>(A) = P(A ∩ B) / P(B)
+        </div>
+        
+        <p><strong>Exemple du tableau de contingence :</strong></p>
+        <table>
+            <tr>
+                <th></th>
+                <th>Fumeurs</th>
+                <th>Non-fumeurs</th>
+                <th>Total</th>
+            </tr>
+            <tr>
+                <td>Garçons</td>
+                <td>36</td>
+                <td>9</td>
+                <td>45</td>
+            </tr>
+            <tr>
+                <td>Filles</td>
+                <td>44</td>
+                <td>11</td>
+                <td>55</td>
+            </tr>
+            <tr>
+                <td>Total</td>
+                <td>80</td>
+                <td>20</td>
+                <td>100</td>
+            </tr>
+        </table>
+        <p>La probabilité qu'un élève soit fumeur sachant que c'est un garçon est de 36/45 = 0,8.</p>
+
+        <h3>Indépendance</h3>
+        <p>Deux événements A et B sont indépendants si et seulement si :</p>
+        <div class="formula">P(A ∩ B) = P(A) × P(B)</div>
+    </section>
+
+    <!-- Section 2: Loi Binomiale -->
+    <section id="binomiale">
+        <h2>2. La Loi Binomiale ℬ(n, p)</h2>
+        <p>Elle s'applique quand on répète <strong>n</strong> fois de manière <strong>indépendante</strong> une épreuve qui n'a que deux issues (Succès ou Échec).</p>
+        
+        <ul>
+            <li><strong>n</strong> : nombre de répétitions.</li>
+            <li><strong>p</strong> : probabilité du succès.</li>
+            <li><strong>k</strong> : nombre de succès obtenus.</li>
+        </ul>
+
+        <div class="formula">
+            P(X = k) = (<sup>n</sup><sub>k</sub>) × p<sup>k</sup> × (1-p)<sup>n-k</sup>
+        </div>
+
+        <h3>Indicateurs clés :</h3>
+        <ul>
+            <li><strong>Espérance (Moyenne) :</strong> E(X) = n × p</li>
+            <li><strong>Variance :</strong> V(X) = n × p × (1 - p)</li>
+            <li><strong>Écart-type :</strong> σ(X) = √V(X)</li>
+        </ul>
+    </section>
+
+    <!-- Section Quiz -->
+    <section id="quiz" class="quiz-container">
+        <h2>🎯 Quiz de validation</h2>
+        <div id="quiz-content">
+            <div class="question" id="q-text">Chargement de la question...</div>
+            <div class="options" id="q-options"></div>
+            <div id="result"></div>
+        </div>
+        <button id="next-btn" style="display:none; margin-top:20px; padding:10px 20px; background:var(--primary); color:white; border:none; border-radius:5px; cursor:pointer;">Question suivante</button>
+    </section>
+
+</div>
+
+<footer>
+    &copy; 2024 - Site de révision BTS SN - Probabilités
+</footer>
+
+<script>
+    const quizData = [
+        {
+            question: "Si P(A ∩ B) = 0,2 et P(B) = 0,5, que vaut P_B(A) ?",
+            options: ["0,1", "0,4", "0,7", "2,5"],
+            correct: 1
+        },
+        {
+            question: "Dans une loi Binomiale ℬ(10 ; 0,3), quelle est l'espérance E(X) ?",
+            options: ["10", "0,3", "3", "7"],
+            correct: 2
+        },
+        {
+            question: "Pour utiliser une loi Binomiale, les tirages doivent être...",
+            options: ["Dépendants", "Indépendants", "Uniquement sur des cartes", "Toujours égaux à 100"],
+            correct: 1
+        },
+        {
+            question: "Si P(A) = 0,5 et P(B) = 0,4 et que A et B sont indépendants, alors P(A ∩ B) = ?",
+            options: ["0,9", "0,1", "0,2", "0,02"],
+            correct: 2
+        }
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+
+    const qText = document.getElementById('q-text');
+    const qOptions = document.getElementById('q-options');
+    const resultDiv = document.getElementById('result');
+    const nextBtn = document.getElementById('next-btn');
+
+    function loadQuestion() {
+        const q = quizData[currentQuestion];
+        qText.innerText = q.question;
+        qOptions.innerHTML = '';
+        resultDiv.style.display = 'none';
+        nextBtn.style.display = 'none';
+
+        q.options.forEach((opt, index) => {
+            const btn = document.createElement('button');
+            btn.innerText = opt;
+            btn.classList.add('option-btn');
+            btn.onclick = () => checkAnswer(index);
+            qOptions.appendChild(btn);
+        });
+    }
+
+    function checkAnswer(choice) {
+        const correct = quizData[currentQuestion].correct;
+        const btns = qOptions.querySelectorAll('button');
+        
+        btns.forEach(btn => btn.disabled = true);
+
+        if(choice === correct) {
+            resultDiv.innerText = "Bravo ! C'est correct.";
+            resultDiv.className = "correct";
+            score++;
+        } else {
+            resultDiv.innerText = "Dommage... La bonne réponse était : " + quizData[currentQuestion].options[correct];
+            resultDiv.className = "wrong";
+        }
+        
+        resultDiv.style.display = 'block';
+        nextBtn.style.display = 'block';
+        
+        if(currentQuestion === quizData.length - 1) {
+            nextBtn.innerText = "Voir le score final";
+        }
+    }
+
+    nextBtn.onclick = () => {
+        currentQuestion++;
+        if(currentQuestion < quizData.length) {
+            loadQuestion();
+        } else {
+            showFinalScore();
+        }
+    };
+
+    function showFinalScore() {
+        document.getElementById('quiz-content').innerHTML = `
+            <h3>Quiz terminé !</h3>
+            <p style="font-size:1.5rem">Votre score : ${score} / ${quizData.length}</p>
+            <button onclick="location.reload()" style="padding:10px; cursor:pointer;">Recommencer</button>
+        `;
+    }
+
+    loadQuestion();
+</script>
+
+</body>
+</html>

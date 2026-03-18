@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>BTS - Quiz Probabilités</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
     <nav>
@@ -13,9 +15,9 @@
         <a href="quiz.html" class="active">Quiz</a>
     </nav>
     <div class="container">
-        <h1>🎯 Testez vos connaissances</h1>
+        <h1>🎯 Testez-vous</h1>
         <div id="quiz-box">
-            <p id="question-text" style="font-weight: bold; font-size: 1.2rem;"></p>
+            <p id="question-text" style="font-size: 1.2rem; min-height: 50px;"></p>
             <div id="options-container" style="display: flex; flex-direction: column; gap: 10px; margin: 20px 0;"></div>
             <p id="feedback"></p>
             <button id="next-btn" class="btn" style="display:none;">Question suivante</button>
@@ -24,16 +26,17 @@
 
     <script>
         const questions = [
-            { q: "Si P(B)=0,4 et P(A∩B)=0,1 , que vaut P_B(A) ?", options: ["0,25", "0,5", "0,04"], correct: 0 },
-            { q: "On lance 10 fois un dé. On note X le nombre de '6'. n est égal à :", options: ["6", "10", "1/6"], correct: 1 },
-            { q: "Dans une loi ℬ(100 ; 0,2), l'espérance est :", options: ["2", "20", "80"], correct: 1 }
+            { q: "Calculer \\( P_B(A) \\) si \\( P(B)=0,5 \\) et \\( P(A \\cap B)=0,1 \\) :", options: ["0,05", "0,2", "0,6"], correct: 1 },
+            { q: "Quelle est l'espérance de la loi \\( \\mathcal{B}(20 ; 0,1) \\) ?", options: ["2", "18", "0,2"], correct: 0 },
+            { q: "La formule de l'écart-type est :", options: ["\\( n \\times p \\)", "\\( \\sqrt{n p (1-p)} \\)", "\\( p^k \\)"], correct: 1 }
         ];
+        
         let current = 0;
         let score = 0;
 
         function loadQ() {
             const q = questions[current];
-            document.getElementById('question-text').innerText = q.q;
+            document.getElementById('question-text').innerHTML = q.q;
             const container = document.getElementById('options-container');
             container.innerHTML = '';
             document.getElementById('feedback').innerText = '';
@@ -41,7 +44,7 @@
 
             q.options.forEach((opt, i) => {
                 const b = document.createElement('button');
-                b.innerText = opt;
+                b.innerHTML = opt; // Utilisation de innerHTML pour le LaTeX
                 b.className = "btn-opt";
                 b.onclick = () => {
                     if(i === q.correct) { score++; document.getElementById('feedback').innerText = "Correct !"; }
@@ -51,6 +54,11 @@
                 };
                 container.appendChild(b);
             });
+
+            // Commande cruciale : demande à MathJax de retraiter le nouveau texte injecté
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
         }
 
         document.getElementById('next-btn').onclick = () => {

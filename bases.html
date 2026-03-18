@@ -1,67 +1,61 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BTS - Bases des Probabilités</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BTS - Bases</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="main.js" defer></script>
-    <!-- MathJax pour les formules LaTeX -->
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
-<body>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100">
     <div id="nav-placeholder"></div>
-
-    <div class="container">
-        <h1>0. Les Bases des Probabilités</h1>
-        
-        <section>
-            <h2>Vocabulaire</h2>
-            <ul>
-                <li><strong>Univers (\(\Omega\)) :</strong> Ensemble de tous les résultats possibles.</li>
-                <li><strong>Événement :</strong> Une partie de l'univers.</li>
-                <li><strong>Équiprobabilité :</strong> Quand toutes les issues ont la même chance de se produire : \[ P(A) = \frac{\text{Nombre d'issues favorables}}{\text{Nombre d'issues total}} \]</li>
-            </ul>
-        </section>
-
-        <section>
-            <h2>Intersection et Réunion</h2>
-            <div class="card-grid">
-                <div class="card">
-                    <h3>Intersection (\(A \cap B\))</h3>
-                    <p>C'est l'événement "A <strong>ET</strong> B". Les deux conditions doivent être remplies en même temps.</p>
+    <main class="max-w-4xl mx-auto px-4 py-12">
+        <h1 class="text-4xl font-black mb-8 border-b-4 border-blue-600 inline-block">Probabilités de Base</h1>
+        <div class="space-y-8">
+            <section class="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm">
+                <h2 class="text-2xl font-bold mb-4 text-blue-600">Réunion et Intersection</h2>
+                <div class="bg-slate-100 dark:bg-slate-800 p-6 rounded-xl text-center text-xl mb-4">
+                    \[ P(A \cup B) = P(A) + P(B) - P(A \cap B) \]
                 </div>
-                <div class="card">
-                    <h3>Réunion (\(A \cup B\))</h3>
-                    <p>C'est l'événement "A <strong>OU</strong> B" (au moins l'un des deux, ou les deux).</p>
+                <p>Si les événements sont <strong>incompatibles</strong>, alors \( P(A \cap B) = 0 \).</p>
+            </section>
+            <section class="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm">
+                <h2 class="text-2xl font-bold mb-4 text-blue-600">Événement Contraire</h2>
+                <div class="bg-slate-100 dark:bg-slate-800 p-6 rounded-xl text-center text-xl">
+                    \[ P(\bar{A}) = 1 - P(A) \]
                 </div>
-            </div>
-
-            <div class="formula">
-                <strong>Formule fondamentale :</strong>
-                \[ P(A \cup B) = P(A) + P(B) - P(A \cap B) \]
-            </div>
-            <p>💡 <em>Note : Si \(A\) et \(B\) sont <strong>incompatibles</strong>, alors \(P(A \cap B) = 0\).</em></p>
-        </section>
-
-        <section>
-            <h2>Événement contraire</h2>
-            <p>L'événement contraire de \(A\), noté \(\bar{A}\) (ou \(A^c\)), est l'ensemble des issues qui ne sont pas dans \(A\).</p>
-            <div class="formula">
-                \[ P(\bar{A}) = 1 - P(A) \]
-            </div>
-        </section>
-
-        <div class="card" style="margin-top: 20px; border-left: 5px solid var(--primary);">
-            <h3>Exemple pratique</h3>
-            <p>On tire une carte dans un jeu de 32 cartes.</p>
-            <ul>
-                <li>\(A\) : "Tirer un Coeur" (\(P(A) = 8/32 = 0,25\))</li>
-                <li>\(B\) : "Tirer un Roi" (\(P(B) = 4/32 = 0,125\))</li>
-                <li>\(A \cap B\) : "Tirer le Roi de Coeur" (\(P(A \cap B) = 1/32\))</li>
-                <li>\(A \cup B\) : "Tirer un Coeur OU un Roi" : \[ P(A \cup B) = \frac{8}{32} + \frac{4}{32} - \frac{1}{32} = \frac{11}{32} \]</li>
-            </ul>
+            </section>
         </div>
-    </div>
+    </main>
+</body>
+</html><!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BTS - Bases</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="main.js" defer></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100">
+    <div id="nav-placeholder"></div>
+    <main class="max-w-4xl mx-auto px-4 py-12">
+        <h1 class="text-4xl font-black mb-8 border-b-4 border-blue-600 inline-block">Probabilités de Base</h1>
+        <div class="space-y-8">
+            <section class="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm">
+                <h2 class="text-2xl font-bold mb-4 text-blue-600">Réunion et Intersection</h2>
+                <div class="bg-slate-100 dark:bg-slate-800 p-6 rounded-xl text-center text-xl mb-4">
+                    \[ P(A \cup B) = P(A) + P(B) - P(A \cap B) \]
+                </div>
+                <p>Si les événements sont <strong>incompatibles</strong>, alors \( P(A \cap B) = 0 \).</p>
+            </section>
+            <section class="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm">
+                <h2 class="text-2xl font-bold mb-4 text-blue-600">Événement Contraire</h2>
+                <div class="bg-slate-100 dark:bg-slate-800 p-6 rounded-xl text-center text-xl">
+                    \[ P(\bar{A}) = 1 - P(A) \]
+                </div>
+            </section>
+        </div>
+    </main>
 </body>
 </html>

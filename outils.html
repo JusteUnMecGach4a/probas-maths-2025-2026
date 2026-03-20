@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr" class="light">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BTS - Outils de Calcul</title>
+    <script src="https://cdn.tailwindcss.com"></script><script src="main.js" defer></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 min-h-screen">
+    <div id="nav-placeholder"></div>
+
+    <header class="bg-blue-600 py-12 text-center text-white shadow-lg">
+        <h1 class="text-3xl md:text-4xl font-black italic">Laboratoire de Probabilités</h1>
+        <p class="mt-2 text-blue-100">Vérifiez vos calculs en un clic</p>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 py-12 grid md:grid-cols-2 gap-8">
+        
+        <!-- CALCULATEUR DE COMBINAISONS -->
+        <section class="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-800">
+            <h2 class="text-xl font-bold mb-6 text-blue-600">🔢 Combinaisons \( \binom{n}{k} \)</h2>
+            <div class="space-y-4">
+                <div><label class="block text-xs font-bold uppercase mb-1">Valeur de n</label>
+                    <input type="number" id="comb-n" class="w-full p-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700" placeholder="Ex: 10"></div>
+                <div><label class="block text-xs font-bold uppercase mb-1">Valeur de k</label>
+                    <input type="number" id="comb-k" class="w-full p-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700" placeholder="Ex: 3"></div>
+                <button onclick="calcComb()" class="w-full py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition">Calculer</button>
+                <div id="res-comb" class="mt-4 p-4 bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 rounded-xl text-center font-black text-xl min-h-[60px] flex items-center justify-center">---</div>
+            </div>
+        </section>
+
+        <!-- CALCULATEUR BINOMIALE -->
+        <section class="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-800">
+            <h2 class="text-xl font-bold mb-6 text-blue-600">📊 Loi Binomiale \( \mathcal{B}(n, p) \)</h2>
+            <div class="grid grid-cols-2 gap-4 mb-4">
+                <div><label class="block text-xs font-bold uppercase mb-1">n (essais)</label>
+                    <input type="number" id="bin-n" class="w-full p-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700" placeholder="20"></div>
+                <div><label class="block text-xs font-bold uppercase mb-1">p (succès)</label>
+                    <input type="number" id="bin-p" step="0.01" class="w-full p-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700" placeholder="0.5"></div>
+            </div>
+            <div><label class="block text-xs font-bold uppercase mb-1">k (résultat)</label>
+                <input type="number" id="bin-k" class="w-full p-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 mb-4" placeholder="3"></div>
+            <button onclick="calcBin()" class="w-full py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition">Calculer P(X = k)</button>
+            <div id="res-bin" class="mt-4 p-4 bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 rounded-xl text-center font-bold text-lg min-h-[60px] flex items-center justify-center italic">Prêt...</div>
+        </section>
+
+        <!-- CALCULATEUR POISSON -->
+        <section class="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-800 md:col-span-2">
+            <h2 class="text-xl font-bold mb-6 text-blue-600">⏳ Loi de Poisson \( \mathcal{P}(\lambda) \)</h2>
+            <div class="grid md:grid-cols-3 gap-4 items-end">
+                <div><label class="block text-xs font-bold uppercase mb-1">Lambda (λ)</label>
+                    <input type="number" id="poi-l" step="0.1" class="w-full p-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700" placeholder="Moyenne"></div>
+                <div><label class="block text-xs font-bold uppercase mb-1">k</label>
+                    <input type="number" id="poi-k" class="w-full p-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700" placeholder="Succès"></div>
+                <button onclick="calcPoi()" class="py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition">Calculer P(X = k)</button>
+            </div>
+            <div id="res-poi" class="mt-6 p-6 bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 rounded-xl text-center font-bold text-2xl italic">En attente de données...</div>
+        </section>
+
+    </main>
+
+    <script>
+        // Fonctions Mathématiques
+        const fact = (n) => (n <= 1 ? 1 : n * fact(n - 1));
+        const comb = (n, k) => {
+            if (k < 0 || k > n) return 0;
+            if (k === 0 || k === n) return 1;
+            if (k > n / 2) k = n - k;
+            let res = 1;
+            for (let i = 1; i <= k; i++) res = res * (n - i + 1) / i;
+            return Math.round(res);
+        };
+
+        function calcComb() {
+            const n = parseInt(document.getElementById('comb-n').value);
+            const k = parseInt(document.getElementById('comb-k').value);
+            if (isNaN(n) || isNaN(k)) return;
+            document.getElementById('res-comb').innerText = comb(n, k);
+        }
+
+        function calcBin() {
+            const n = parseInt(document.getElementById('bin-n').value);
+            const p = parseFloat(document.getElementById('bin-p').value);
+            const k = parseInt(document.getElementById('bin-k').value);
+            if (isNaN(n) || isNaN(p) || isNaN(k)) return;
+            const res = comb(n, k) * Math.pow(p, k) * Math.pow(1 - p, n - k);
+            document.getElementById('res-bin').innerText = "P(X = " + k + ") ≈ " + res.toFixed(6);
+        }
+
+        function calcPoi() {
+            const l = parseFloat(document.getElementById('poi-l').value);
+            const k = parseInt(document.getElementById('poi-k').value);
+            if (isNaN(l) || isNaN(k)) return;
+            // P(X=k) = (e^-l * l^k) / k!
+            let factorielle = 1;
+            for(let i=1; i<=k; i++) factorielle *= i;
+            const res = (Math.exp(-l) * Math.pow(l, k)) / factorielle;
+            document.getElementById('res-poi').innerText = "P(X = " + k + ") ≈ " + res.toFixed(6);
+        }
+    </script>
+</body>
+</html>

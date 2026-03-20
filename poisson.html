@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BTS - Poisson</title>
+    <title>BTS - Loi de Poisson</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="main.js" defer></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -10,16 +10,29 @@
 <body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100">
     <div id="nav-placeholder"></div>
     <main class="max-w-4xl mx-auto px-4 py-12">
-        <h1 class="text-4xl font-black mb-8 border-b-4 border-blue-600 inline-block">Loi de Poisson \( \mathcal{P}(\lambda) \)</h1>
-        <div class="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm space-y-6">
-            <p>C'est la loi des événements rares.</p>
-            <div class="bg-slate-100 dark:bg-slate-800 p-6 rounded-xl text-center text-xl">
-                \[ P(X = k) = \frac{e^{-\lambda} \lambda^k}{k!} \]
+        <h1 class="text-4xl font-black mb-8 border-b-4 border-blue-600 inline-block">3. Loi de Poisson \( \mathcal{P}(\lambda) \)</h1>
+        
+        <div class="space-y-8">
+            <div class="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm">
+                <h2 class="text-2xl font-bold mb-4 text-blue-600">Contexte</h2>
+                <p class="text-slate-600 dark:text-slate-400">On l'utilise pour compter le nombre d'événements dans un intervalle (temps, surface, volume).</p>
+                <p class="mt-4 font-bold">Exemples :</p>
+                <ul class="list-disc ml-6 text-sm italic">
+                    <li>Nombre de mails reçus par heure.</li>
+                    <li>Nombre de défauts sur 100m de câble.</li>
+                    <li>Nombre de pannes par mois.</li>
+                </ul>
             </div>
-            <p><strong>Paramètre :</strong> \( \lambda \) est la moyenne d'événements.</p>
-            <p class="p-4 border-l-4 border-orange-500 bg-orange-50 dark:bg-slate-800 italic">
-                On approche une Binomiale par une Poisson si \( n \ge 30 \) et \( p \le 0,1 \).
-            </p>
+
+            <section class="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm">
+                <h2 class="text-2xl font-bold mb-4 text-blue-600 italic">Loi des événements rares (Approximation)</h2>
+                <p class="mb-4">On peut remplacer une Binomiale \( \mathcal{B}(n, p) \) par une Poisson \( \mathcal{P}(\lambda) \) avec <strong>\( \lambda = n \times p \)</strong> si :</p>
+                <div class="flex flex-wrap gap-4 justify-center">
+                    <span class="px-4 py-2 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 rounded-full font-bold">\( n \ge 30 \)</span>
+                    <span class="px-4 py-2 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 rounded-full font-bold">\( p \le 0,1 \)</span>
+                    <span class="px-4 py-2 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 rounded-full font-bold">\( n \times p \le 10 \)</span>
+                </div>
+            </section>
         </div>
     </main>
 </body>

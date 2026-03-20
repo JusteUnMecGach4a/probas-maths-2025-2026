@@ -10,17 +10,34 @@
 <body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100">
     <div id="nav-placeholder"></div>
     <main class="max-w-4xl mx-auto px-4 py-12">
-        <h1 class="text-4xl font-black mb-8 border-b-4 border-blue-600 inline-block">Probabilités Conditionnelles</h1>
-        <div class="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm">
-            <h2 class="text-2xl font-bold mb-4">Formule</h2>
-            <div class="bg-blue-50 dark:bg-slate-800 p-6 rounded-xl text-center text-xl mb-6 border-l-8 border-blue-600">
-                \[ P_{B}(A) = \frac{P(A \cap B)}{P(B)} \]
+        <h1 class="text-4xl font-black mb-8 border-b-4 border-blue-600 inline-block">1. Probabilités Conditionnelles</h1>
+        
+        <div class="space-y-8">
+            <div class="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm">
+                <h2 class="text-2xl font-bold mb-4 text-blue-600">Définition & Calcul</h2>
+                <p class="mb-4 text-slate-600 dark:text-slate-400">On cherche la probabilité de A sachant que B est déjà réalisé.</p>
+                <div class="bg-blue-600 text-white p-6 rounded-xl text-center text-2xl font-mono shadow-inner">
+                    \[ P_{B}(A) = \frac{P(A \cap B)}{P(B)} \]
+                </div>
             </div>
-            <h3 class="text-xl font-bold mb-4">Indépendance</h3>
-            <p>Deux événements sont indépendants si et seulement si :</p>
-            <p class="mt-4 p-4 bg-slate-100 dark:bg-slate-800 rounded-lg text-center font-bold">
-                \[ P(A \cap B) = P(A) \times P(B) \]
-            </p>
+
+            <section class="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm">
+                <h2 class="text-2xl font-bold mb-4">L'Arbre Pondéré (3 Règles)</h2>
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div class="p-4 border border-slate-200 dark:border-slate-700 rounded-xl text-sm">
+                        <span class="text-blue-600 font-black">1.</span> La somme des probabilités des branches issues d'un même nœud est égale à <strong>1</strong>.
+                    </div>
+                    <div class="p-4 border border-slate-200 dark:border-slate-700 rounded-xl text-sm">
+                        <span class="text-blue-600 font-black">2.</span> La probabilité d'un chemin est le <strong>produit</strong> des probabilités rencontrées.
+                    </div>
+                    <div class="p-4 border border-slate-200 dark:border-slate-700 rounded-xl text-sm">
+                        <span class="text-blue-600 font-black">3.</span> (Loi Totale) La probabilité d'un événement est la <strong>somme</strong> des chemins y menant.
+                    </div>
+                </div>
+                <div class="mt-6 p-4 bg-slate-50 dark:bg-slate-800 rounded-lg text-center font-bold">
+                    \[ P(B) = P(A \cap B) + P(\bar{A} \cap B) \]
+                </div>
+            </section>
         </div>
     </main>
 </body>

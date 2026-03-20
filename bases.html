@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BTS - Bases</title>
+    <title>BTS - Bases du calcul</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="main.js" defer></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -10,49 +10,36 @@
 <body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100">
     <div id="nav-placeholder"></div>
     <main class="max-w-4xl mx-auto px-4 py-12">
-        <h1 class="text-4xl font-black mb-8 border-b-4 border-blue-600 inline-block">Probabilités de Base</h1>
+        <h1 class="text-4xl font-black mb-8 border-b-4 border-blue-600 inline-block">0. Bases & Vocabulaire</h1>
+        
         <div class="space-y-8">
             <section class="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm">
-                <h2 class="text-2xl font-bold mb-4 text-blue-600">Réunion et Intersection</h2>
-                <div class="bg-slate-100 dark:bg-slate-800 p-6 rounded-xl text-center text-xl mb-4">
+                <h2 class="text-2xl font-bold mb-4 text-blue-600">Concepts Clés</h2>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="p-4 bg-slate-50 dark:bg-slate-800 rounded-xl">
+                        <h3 class="font-bold text-lg mb-2 underline">Notation Ensemble</h3>
+                        <ul class="text-sm space-y-2">
+                            <li>\( A \cap B \) : "A et B" (les deux)</li>
+                            <li>\( A \cup B \) : "A ou B" (au moins l'un)</li>
+                            <li>\( \bar{A} \) : Événement contraire de A</li>
+                        </ul>
+                    </div>
+                    <div class="p-4 bg-slate-50 dark:bg-slate-800 rounded-xl">
+                        <h3 class="font-bold text-lg mb-2 underline">Équiprobabilité</h3>
+                        <p class="text-sm">Si toutes les issues ont la même chance (ex: dé non pipé) :</p>
+                        <p class="font-bold mt-2">\( P(A) = \frac{\text{nb cas favorables}}{\text{nb cas total}} \)</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm border-l-8 border-blue-600">
+                <h2 class="text-2xl font-bold mb-4">La formule de la Réunion</h2>
+                <p class="mb-4">Pour n'importe quels événements A et B :</p>
+                <div class="bg-blue-50 dark:bg-slate-800 p-6 rounded-xl text-center text-2xl font-mono">
                     \[ P(A \cup B) = P(A) + P(B) - P(A \cap B) \]
                 </div>
-                <p>Si les événements sont <strong>incompatibles</strong>, alors \( P(A \cap B) = 0 \).</p>
-            </section>
-            <section class="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm">
-                <h2 class="text-2xl font-bold mb-4 text-blue-600">Événement Contraire</h2>
-                <div class="bg-slate-100 dark:bg-slate-800 p-6 rounded-xl text-center text-xl">
-                    \[ P(\bar{A}) = 1 - P(A) \]
-                </div>
-            </section>
-        </div>
-    </main>
-</body>
-</html><!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BTS - Bases</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="main.js" defer></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-</head>
-<body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100">
-    <div id="nav-placeholder"></div>
-    <main class="max-w-4xl mx-auto px-4 py-12">
-        <h1 class="text-4xl font-black mb-8 border-b-4 border-blue-600 inline-block">Probabilités de Base</h1>
-        <div class="space-y-8">
-            <section class="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm">
-                <h2 class="text-2xl font-bold mb-4 text-blue-600">Réunion et Intersection</h2>
-                <div class="bg-slate-100 dark:bg-slate-800 p-6 rounded-xl text-center text-xl mb-4">
-                    \[ P(A \cup B) = P(A) + P(B) - P(A \cap B) \]
-                </div>
-                <p>Si les événements sont <strong>incompatibles</strong>, alors \( P(A \cap B) = 0 \).</p>
-            </section>
-            <section class="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm">
-                <h2 class="text-2xl font-bold mb-4 text-blue-600">Événement Contraire</h2>
-                <div class="bg-slate-100 dark:bg-slate-800 p-6 rounded-xl text-center text-xl">
-                    \[ P(\bar{A}) = 1 - P(A) \]
+                <div class="mt-4 p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg text-sm italic">
+                    💡 <strong>Astuce :</strong> Si l'énoncé dit "Incompatibles" ou "Disjoints", alors \( P(A \cap B) = 0 \). La formule devient alors \( P(A) + P(B) \).
                 </div>
             </section>
         </div>

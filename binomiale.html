@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BTS - Binomiale</title>
+    <title>BTS - Loi Binomiale</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="main.js" defer></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -10,16 +10,34 @@
 <body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100">
     <div id="nav-placeholder"></div>
     <main class="max-w-4xl mx-auto px-4 py-12">
-        <h1 class="text-4xl font-black mb-8 border-b-4 border-blue-600 inline-block">Loi Binomiale \( \mathcal{B}(n, p) \)</h1>
-        <div class="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm space-y-6">
-            <p>On l'utilise pour \( n \) répétitions indépendantes d'une épreuve à deux issues.</p>
-            <div class="bg-slate-100 dark:bg-slate-800 p-6 rounded-xl text-center text-xl">
-                \[ P(X = k) = \binom{n}{k} p^k (1-p)^{n-k} \]
+        <h1 class="text-4xl font-black mb-8 border-b-4 border-blue-600 inline-block">2. Loi Binomiale \( \mathcal{B}(n, p) \)</h1>
+        
+        <div class="space-y-8">
+            <div class="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm">
+                <h2 class="text-2xl font-bold mb-4 text-blue-600">Conditions d'application</h2>
+                <p class="mb-4">Pour utiliser cette loi, l'énoncé doit vérifier 3 points :</p>
+                <ul class="list-disc ml-6 space-y-2 text-slate-600 dark:text-slate-400">
+                    <li>Une épreuve avec seulement <strong>2 issues</strong> (Succès \(p\) / Échec \(q\)).</li>
+                    <li>Répétition de l'épreuve <strong>\(n\) fois</strong>.</li>
+                    <li>Les épreuves sont <strong>indépendantes</strong> (tirage avec remise).</li>
+                </ul>
             </div>
-            <div class="grid md:grid-cols-2 gap-4 text-center">
-                <div class="p-4 bg-blue-50 dark:bg-slate-800 rounded-lg"><strong>Espérance :</strong> \( E(X) = n p \)</div>
-                <div class="p-4 bg-blue-50 dark:bg-slate-800 rounded-lg"><strong>Écart-type :</strong> \( \sigma(X) = \sqrt{n p (1-p)} \)</div>
-            </div>
+
+            <section class="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm border-t-8 border-blue-600">
+                <h2 class="text-2xl font-bold mb-4">Calculatrice (Essentiel)</h2>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="p-6 bg-slate-100 dark:bg-slate-800 rounded-2xl text-center">
+                        <h3 class="font-bold mb-2">Calculer \( P(X = k) \)</h3>
+                        <p class="text-blue-600 font-mono text-lg">TI : binomFdp</p>
+                        <p class="text-blue-600 font-mono text-lg">CASIO : BinomialPD</p>
+                    </div>
+                    <div class="p-6 bg-slate-100 dark:bg-slate-800 rounded-2xl text-center">
+                        <h3 class="font-bold mb-2">Calculer \( P(X \le k) \)</h3>
+                        <p class="text-blue-600 font-mono text-lg">TI : binomFrép</p>
+                        <p class="text-blue-600 font-mono text-lg">CASIO : BinomialCD</p>
+                    </div>
+                </div>
+            </section>
         </div>
     </main>
 </body>
